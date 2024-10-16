@@ -1,0 +1,19 @@
+# Base image
+FROM python:3.9-slim
+
+# Set the working directory
+WORKDIR /home/cc
+
+# Install dependencies
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the consumer script
+COPY consumer.py ./
+
+# Set environment variables for CouchDB connection
+ENV COUCHDB_URL=http://couchdb-server:5984
+ENV COUCHDB_DB=mydatabase
+
+# Run the consumer script
+CMD ["python", "./consumer.py"]
