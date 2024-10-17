@@ -105,3 +105,6 @@ def main():
 
     image_thread.start()
     result_thread.start()
+
+
+main()
